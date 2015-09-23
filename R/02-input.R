@@ -22,8 +22,8 @@ data_frame(cntry = hmd_cntry) %>%
                item = "mltper_1x1")
   }) -> hmd_m_lt_per
 
-# save(hmd_f_lt_per, file = "./data/hmd_f_lt_per.Rdata")
-# save(hmd_m_lt_per, file = "./data/hmd_m_lt_per.Rdata")
+# save(hmd_f_lt_per, file = "./priv/data/hmd_f_lt_per.Rdata")
+# save(hmd_m_lt_per, file = "./priv/data/hmd_m_lt_per.Rdata")
 #
-# load(file = "./data/hmd_f_lt_per.Rdata")
-# load(file = "./data/hmd_m_lt_per.Rdata")
+# load(file = "./priv/data/hmd_f_lt_per.Rdata")
+# load(file = "./priv/data/hmd_m_lt_per.Rdata")

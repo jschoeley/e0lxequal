@@ -4,8 +4,27 @@ rbind(
   mutate(hmd_m_lt_per, sex = "Male")
 ) -> hmd_lt_per
 
-# compute lx equality measures and extract e0
 hmd_lt_per %>%
+  # remove duplicate populations
+  filter(
+    # Exclude the German total population data as it overlaps with data for
+    # east and west Germany but has the shorter timeline.
+    cntry != "DEUTNP",
+    # Exclude French civil population data as it overlaps with total population
+    # data and most country data is only available for total populations anyway.
+    cntry != "FRACNP",
+    # Exclude New Zealand Maori and Non-Maori population data as it overlaps
+    # with total population data.
+    cntry != "NZL_MA",
+    cntry != "NZL_NM",
+    # Exclude England Wales civillian/total population, Scotland and
+    # Northern Ireland total population as they overlap with U.K.
+    # total population.
+    cntry != "GBRTENW",
+    cntry != "GBRCENW",
+    cntry != "GBR_SCO",
+    cntry != "GBR_NIR") %>%
+  # compute lx equality measures and extract e0
   mutate(lx = lx / 100000) %>%
   filter(lx != 0) %>%
   group_by(cntry, sex, Year) %>%

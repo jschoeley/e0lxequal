@@ -16,9 +16,9 @@ Logitlx <- function (lx, e0) {
   avglx / (1 - avglx)
 }
 
-#' Inverse Keyfitz' entropy
+#' Inverse Keyfitz' Entropy
 InvKeyfEntr <- function (lx, e0) {
-  -1 / (sum(lx * log(lx)) / e0)
+  -e0 / sum(lx * log(lx))
 }
 
 #' MIRA
