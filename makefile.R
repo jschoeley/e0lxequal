@@ -1,9 +1,10 @@
 # Make file for analysis ----------------------------------------------------
 # dependencies:
-# create a folder "data" via system command
-system("mkdir data")
-# create a txt file with the username and password for HMD
-system("echo 'jabarthold@health.sdu.dk 1431510742' > /Users/jabarthold/Dropbox/Projects/014_sociality/e0lxequal/data/HMDcred.txt")
+# on first run:
+## create a folder "data" via system command
+# system("mkdir data")
+## create a txt file with the username and password for HMD on first run
+# system("echo 'HMDusername HMDpassword' > PATH/HMDcred.txt")
 
 # run the source code
 source("scr/01-init.R")
