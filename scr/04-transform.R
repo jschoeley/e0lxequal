@@ -1,4 +1,4 @@
-### merge males and females
+# merge males and females
 rbind(
   mutate(hmd_f_lt_per, sex = "Female"),
   mutate(hmd_m_lt_per, sex = "Male")

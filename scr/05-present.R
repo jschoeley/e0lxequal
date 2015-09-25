@@ -1,4 +1,4 @@
-### Comparision of lx Equality Measures -------------------------------------
+# Comparision of lx Equality Measures -------------------------------------
 
 # plot scale settings
 x_breaks <- seq(10, 100, 10)

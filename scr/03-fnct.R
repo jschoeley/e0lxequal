@@ -1,4 +1,4 @@
-### lx Equality Measures ----------------------------------------------------
+# lx Equality Measures ----------------------------------------------------
 
 #' Average lx
 Avglx <- function (lx, e0) {

@@ -1,4 +1,4 @@
-### Download HMD Lifetables -------------------------------------------------
+# Download HMD Lifetables -------------------------------------------------
 # If the data objects are not in data folder, download data
 if(!"hmd_f_lt_per.Rdata" %in% list.files("data")) {
   hmd_cntry <- getHMDcountries()

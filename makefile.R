@@ -1,4 +1,4 @@
-### Make file for analysis ----------------------------------------------------
+# Make file for analysis ----------------------------------------------------
 # dependencies:
 # create a folder "data" via system command
 system("mkdir data")
