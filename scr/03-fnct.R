@@ -1,4 +1,4 @@
-# lx Equality Measures ----------------------------------------------------
+### lx Equality Measures ----------------------------------------------------
 
 #' Average lx
 Avglx <- function (lx, e0) {
@@ -18,7 +18,7 @@ Logitlx <- function (lx, e0) {
 
 #' Inverse Keyfitz' entropy
 InvKeyfEntr <- function (lx, e0) {
-  -1 / (sum(lx * log(lx)) / e0)
+  -e0/ sum(lx * log(lx))
 }
 
 #' MIRA

@@ -1,4 +1,4 @@
-# Comparision of lx Equality Measures -------------------------------------
+### Comparision of lx Equality Measures -------------------------------------
 
 # plot scale settings
 x_breaks <- seq(10, 100, 10)
@@ -71,3 +71,16 @@ plot_mira_vs_keyfentr <-
 
 ExportPDF(plot_mira_vs_keyfentr, "./out/plot_mira_vs_keyfentr.pdf",
           .width = 25, .height = 20)
+
+# female e0 vs. Inverse Keyfitz' Entropy -----------------------------------
+ggplot(filter(e0_vs_lxequality_wide, sex == "Female"), aes(e0, keyfentr)) +
+  # mai
+  geom_point(alpha = 0.6, size = 0.5) +
+  # scale
+  scale_x_continuous(name = x_lab, breaks = x_breaks) +
+  scale_y_continuous(name = "Lifespan Equality", trans = "log", breaks = y_breaks) +
+  # guide
+  guides(colour = guide_legend(override.aes = list(size = 3, alpha = 1),
+                               reverse = TRUE)) +
+  coord_fixed(20)
+

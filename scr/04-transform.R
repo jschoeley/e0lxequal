@@ -1,4 +1,4 @@
-# merge males and females
+### merge males and females
 rbind(
   mutate(hmd_f_lt_per, sex = "Female"),
   mutate(hmd_m_lt_per, sex = "Male")
@@ -29,7 +29,7 @@ hmd_lt_per %>%
          mira     = NormalizeRange(mira, na_rm = TRUE),
          irr      = NormalizeRange(irr, na_rm = TRUE),
          iqrlx    = NormalizeRange(iqrlx, na_rm = TRUE)) %>%
-  ungroup() -> e0_vs_lxequality_wide
+  ungroup() -> e0_vs_lxequality_wide -> e0w
 
 # convert to long format
 e0_vs_lxequality_wide %>%
@@ -43,4 +43,4 @@ e0_vs_lxequality_wide %>%
                                 "\nOuter Rectangularization",
                                 "\nMIRA",
                                 "\nInner Rectangularization",
-                                "\nInverse Interquartile Range l(x)"))) -> e0_vs_lxequality_long
+                                "\nInverse Interquartile Range l(x)"))) -> e0_vs_lxequality_long -> e0l
