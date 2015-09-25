@@ -84,3 +84,6 @@ ggplot(filter(e0_vs_lxequality_wide, sex == "Female"), aes(e0, keyfentr)) +
                                reverse = TRUE)) +
   coord_fixed(20)
 
+ExportPDF(plot_mira_vs_keyfentr, "./out/eo_entr_fem.pdf",
+          .width = 25, .height = 20)
+

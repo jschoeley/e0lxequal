@@ -18,11 +18,7 @@ Logitlx <- function (lx, e0) {
 
 #' Inverse Keyfitz' Entropy
 InvKeyfEntr <- function (lx, e0) {
-<<<<<<< HEAD:scr/03-fnct.R
-  -e0/ sum(lx * log(lx))
-=======
   -e0 / sum(lx * log(lx))
->>>>>>> 19d7e730132b00fa771ed20f2399a6d6cf61ffb0:R/03-fnct.R
 }
 
 #' MIRA
