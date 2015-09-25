@@ -73,7 +73,7 @@ ExportPDF(plot_mira_vs_keyfentr, "./out/plot_mira_vs_keyfentr.pdf",
           .width = 25, .height = 20)
 
 # female e0 vs. Inverse Keyfitz' Entropy -----------------------------------
-ggplot(filter(e0_vs_lxequality_wide, sex == "Female"), aes(e0, keyfentr)) +
+plot_eo_entr_fem <- ggplot(filter(e0_vs_lxequality_wide, sex == "Female"), aes(e0, keyfentr)) +
   # mai
   geom_point(alpha = 0.6, size = 0.5) +
   # scale
@@ -84,6 +84,37 @@ ggplot(filter(e0_vs_lxequality_wide, sex == "Female"), aes(e0, keyfentr)) +
                                reverse = TRUE)) +
   coord_fixed(20)
 
-ExportPDF(plot_mira_vs_keyfentr, "./out/eo_entr_fem.pdf",
+ExportPDF(plot_eo_entr_fem, "./out/eo_entr_fem.pdf",
           .width = 25, .height = 20)
 
+# Keyfitz entropy vs. e0 by country females with lm
+plot_keyfitz_e0_cntry <-
+  xyplot(keyfentr~e0|factor(cntry),
+       groups = sex,
+       grid = T,
+       type = c("p", "r"), lwd = 2, alpha = 1/2, cex = 0.5,
+       col.symbol=c(adjustcolor("#B22222", alpha.f = 0.5), adjustcolor("#1874CD", alpha.f = 0.5)),
+       col.line = c("#B22222", "#1874CD"),
+       xlab = "Life Expectancy",
+       ylab = "Keyfitz' Entropy",
+       strip = function(bg = 'white', ...)
+         strip.default(bg = 'white', ...),
+       data = e0w,
+       scales=list(y=list(log=T, equispaced.log = FALSE)))
+
+ExportPDF(plot_keyfitz_e0_cntry, "./out/eo_entr_fem.pdf",
+          .width = 25, .height = 20)
+
+
+plot_keyfitz_e0_cntry <- xyplot(keyfentr~e0|factor(cntry),
+                                groups = sex,
+                                col.symbol=c(adjustcolor("#B22222", alpha.f = 0.5), adjustcolor("#1874CD", alpha.f = 0.5)),
+                                xlab = "Life Expectancy",
+                                ylab = "Keyfitz' Entropy",
+                                strip = function(bg = 'white', ...)
+                                  strip.default(bg = 'white', ...),
+                                data = e0w, pch = 1, cex = 0.3,
+                                scales=list(y=list(log=T, equispaced.log = FALSE)))
+
+ExportPDF(plot_keyfitz_e0_cntry, "./out/e)_entrpdf",
+          .width = 25, .height = 20)

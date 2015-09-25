@@ -65,7 +65,7 @@ NormalizeRange <- function (x, scale = 1, na_rm = FALSE) {
 #' @return PDF output to disk.
 ExportPDF <- function (.x, .path, .width, .height) {
   pdf(.path, width = 0.4*.width, height = 0.4*.height,
-      useDingbats = FALSE) # avoid problems with missing fonts
+      useDingbats = FALSE, onefile=FALSE) # avoid problems with missing fonts
   grid.newpage()
   vp <- viewport(x = 0.5, y = 0.5,
                  width = unit(.width, "cm"),

@@ -4,6 +4,7 @@ library(tidyr)
 library(ggplot2)
 library(grid)
 library(devtools)
+library(lattice)
 source_gist("6cc00cd36ae3b8d0532f") # linear model equation annotation
 
 # install_github("UCBdemography/DemogBerkeley", subdir = "DemogBerkeley")
