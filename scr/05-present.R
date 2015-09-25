@@ -116,5 +116,5 @@ plot_keyfitz_e0_cntry <- xyplot(keyfentr~e0|factor(cntry),
                                 data = e0w, pch = 1, cex = 0.3,
                                 scales=list(y=list(log=T, equispaced.log = FALSE)))
 
-ExportPDF(plot_keyfitz_e0_cntry, "./out/e)_entrpdf",
+ExportPDF(plot_keyfitz_e0_cntry, "./out/e0_entrpdf",
           .width = 25, .height = 20)
