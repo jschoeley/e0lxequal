@@ -34,4 +34,6 @@ data
 
 *.pdf
 
+# all files that start with temp
+temp*
 
