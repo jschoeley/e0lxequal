@@ -5,6 +5,7 @@ x_breaks <- seq(10, 100, 10)
 y_breaks <- c(0.05, 0.1, 0.2, 0.3, 0.5, 1)
 x_lab    <- expression(italic(e[0]))
 font     <- "Palatino"
+colSeq <-  rainbow(262, alpha = 1)
 
 # plot e0 against average lx (period, females and males)
 plot_e0_vs_lxequality <-
@@ -106,15 +107,77 @@ ExportPDF(plot_keyfitz_e0_cntry, "./out/eo_entr_fem.pdf",
           .width = 25, .height = 20)
 
 
-plot_keyfitz_e0_cntry <- xyplot(keyfentr~e0|factor(cntry),
-                                groups = sex,
-                                col.symbol=c(adjustcolor("#B22222", alpha.f = 0.5), adjustcolor("#1874CD", alpha.f = 0.5)),
-                                xlab = "Life Expectancy",
-                                ylab = "Keyfitz' Entropy",
-                                strip = function(bg = 'white', ...)
-                                  strip.default(bg = 'white', ...),
-                                data = e0w, pch = 1, cex = 0.3,
-                                scales=list(y=list(log=T, equispaced.log = FALSE)))
+# plot e0 against average lx (period, females and males)
+plot_keyfitz_e0_cntry <-
+  # main
+  ggplot(filter(e0_vs_lxequality_wide, !cntry %in% c("BLR", "CHL", "LTU", "LVA", "RUS", "TWN", "UKR", "SVN")), aes(e0, keyfentr), group = sex) +
+  geom_point(alpha = 0.6, size = 0.5, aes(colour = Year)) +
+ # stat_smooth_eqn_lab(geom = "text", method = "lm",
+  #                    xpos = 40, ypos = log(0.05),
+  #                    hjust = 0, parse = TRUE, family = font, size = 4)  +
+ # geom_smooth(method = "lm", colour = rcpal$quacla[1]) +
+  # scale
+  scale_x_continuous(name = x_lab, breaks = x_breaks) +
+  scale_y_continuous(name = "Inverse Keyfitz' entropy (log scale)", trans = "log", breaks = y_breaks) +
+  # facet
+  facet_wrap(~ cntry, nrow = 6) +
+  # guide
+  guides(colour = guide_legend(override.aes = list(size = 3, alpha = 1),
+                               reverse = TRUE)) +
+  coord_fixed(20) +
+  # theme
+  ggtheme_min(grid = "xy", base_family = font)
 
-ExportPDF(plot_keyfitz_e0_cntry, "./out/e0_entrpdf",
+ExportPDF(plot_keyfitz_e0_cntry, "./out/eo_entr.pdf",
           .width = 25, .height = 20)
+
+
+e0w$groupYearCntry <- paste(e0w$Year, e0w$cntry)
+plot_keyfitz_e0_cntry_tadpoles <-
+  # main
+  ggplot(filter(e0w, (!cntry %in% c("BLR", "CHL", "LTU", "LVA", "RUS", "TWN", "UKR", "SVN")) & sex == "Female"), aes(e0, keyfentr)) +
+  geom_point(alpha = 0.6, size = 1, aes(colour = Year)) +
+  geom_line(data = filter(e0w, !cntry %in% c("BLR", "CHL", "LTU", "LVA", "RUS", "TWN", "UKR", "SVN")), aes(group = groupYearCntry, colour = Year), alpha = 0.6, size = 0.3) +
+  # stat_smooth_eqn_lab(geom = "text", method = "lm",
+  #                    xpos = 40, ypos = log(0.05),
+  #                    hjust = 0, parse = TRUE, family = font, size = 4)  +
+  # geom_smooth(method = "lm", colour = rcpal$quacla[1]) +
+  # scale
+  scale_x_continuous(name = x_lab, breaks = x_breaks) +
+  scale_y_continuous(name = "Inverse Keyfitz' entropy (log scale)", trans = "log", breaks = y_breaks) +
+  # facet
+  facet_wrap(~ cntry, nrow = 6) +
+  # guide
+  guides(colour = guide_legend(override.aes = list(size = 3, alpha = 1),
+                               reverse = TRUE)) +
+  coord_fixed(20) +
+  # theme
+  ggtheme_min(grid = "xy", base_family = font)
+
+ExportPDF(plot_keyfitz_e0_cntry_tadpoles, "./out/eo_entr_tadpoles.pdf",
+          .width = 25, .height = 20)
+
+plot_keyfitz_e0_someCntry_tadpoles <-
+  # main
+  ggplot(filter(e0w, (cntry %in% c("JPN", "DNK", "BEL")) & sex == "Female"), aes(e0, keyfentr)) +
+  geom_point(alpha = 0.6, size = 2.1, aes(colour = Year)) +
+  geom_line(data = filter(e0w,  cntry %in% c("JPN", "DNK", "BEL")), aes(group = groupYearCntry, colour = Year), alpha = 0.6, size = 0.5) +
+  # stat_smooth_eqn_lab(geom = "text", method = "lm",
+  #                    xpos = 40, ypos = log(0.05),
+  #                    hjust = 0, parse = TRUE, family = font, size = 4)  +
+  # geom_smooth(method = "lm", colour = rcpal$quacla[1]) +
+  # scale
+  scale_x_continuous(name = x_lab, breaks = x_breaks) +
+  scale_y_continuous(name = "Inverse Keyfitz' entropy (log scale)", trans = "log", breaks = y_breaks) +
+  # facet
+  facet_wrap(~ cntry, nrow = 1) +
+  # guide
+  guides(colour = guide_legend(override.aes = list(size = 3, alpha = 1),
+                               reverse = TRUE)) +
+  coord_fixed(20) +
+  # theme
+  ggtheme_min(grid = "xy", base_family = font)
+
+ExportPDF(plot_keyfitz_e0_someCntry_tadpoles, "./out/eo_entr_someC_tadpoles.pdf",
+          .width = 35, .height = 10)
+
