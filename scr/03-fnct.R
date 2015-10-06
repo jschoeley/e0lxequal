@@ -5,9 +5,19 @@ Avglx <- function (lx, e0) {
   sum(lx^2) / e0
 }
 
+#' Overlapping life span tau
+Tau <- function(lx) {
+  sum(lx^2)
+}
+
 #' Inverse Gini Coefficient of lx
 InvGinilx <- function (lx, e0) {
   1 / (1 - Avglx(lx, e0))
+}
+
+#' Gini Coefficient of lx
+Ginilx <- function(lx, e0) {
+  1 - Avglx(lx, e0)
 }
 
 #' Logit of average lx
